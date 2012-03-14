@@ -1,0 +1,10 @@
+#Ignore all files
+/*
+/.*
+
+#managing files
+!.gitignore
+
+#Emacs Setting files
+!/.emacs
+!/.elisp
