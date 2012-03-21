@@ -3,7 +3,10 @@
        (list
        (expand-file-name "~/.elisp/")
        )
-       load-path))(setq-default c-basic-offset 4)
+       load-path))
+
+;C言語のインデントを4桁に
+(setq-default c-basic-offset 4)
 
 ;Javascript向け設定
 (autoload 'js2-mode "js2" nil t)
