@@ -9,11 +9,10 @@
 (setq-default c-basic-offset 4)
 
 ;Javascript向け設定
-(autoload 'js2-mode "js2" nil t)
+;https://github.com/mooz/js2-mode を使用
+(autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
-; インデントにタブを使わない
-(setq-default indent-tabs-mode nil)
 
 ;; タブ, 全角スペース、改行直前の半角スペースを表示する
 ;;(defface my-face-r-1 '((t (:background "gray15"))) nil)
