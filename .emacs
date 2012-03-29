@@ -34,3 +34,6 @@
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)
+
+; インデントにタブを使用しない
+(setq-default indent-tabs-mode nil)
