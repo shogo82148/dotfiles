@@ -37,3 +37,8 @@
 
 ; インデントにタブを使用しない
 (setq-default indent-tabs-mode nil)
+
+(add-hook 'c-mode-hook
+          (lambda () (c-set-style "cc-mode")))
+(add-hook 'c++-mode-hook
+          (lambda () (c-set-style "cc-mode")))
