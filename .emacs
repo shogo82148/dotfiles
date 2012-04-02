@@ -20,6 +20,15 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+
+;; markdown記法向け設定
+;; http://jblevins.org/projects/markdown-mode/ をインストール
+(autoload 'markdown-mode "markdown-mode.el"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
+
 ;; タブ, 全角スペース、改行直前の半角スペースを表示する
 ;;(defface my-face-r-1 '((t (:background "gray15"))) nil)
 (defface my-face-b-1 '((t (:background "gray"))) nil)
