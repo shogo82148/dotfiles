@@ -69,3 +69,27 @@
           (lambda () (c-set-style "cc-mode")))
 (add-hook 'c++-mode-hook
           (lambda () (c-set-style "cc-mode")))
+
+
+; termの設定
+(require 'term)
+
+(global-set-key "\C-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
+
+(defvar ansi-term-after-hook nil)
+(add-hook 'ansi-term-after-hook
+(function
+(lambda ()
+(define-key term-raw-map "\C-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))))))
+
+(defadvice ansi-term (after ansi-term-after-advice (arg))
+"run hook as after advice"
+(run-hooks 'ansi-term-after-hook))
+(ad-activate 'ansi-term)
+
+; 文字コードの設定
+(set-language-environment 'Japanese)
+(set-default-coding-systems 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
