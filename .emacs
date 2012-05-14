@@ -86,10 +86,3 @@
 "run hook as after advice"
 (run-hooks 'ansi-term-after-hook))
 (ad-activate 'ansi-term)
-
-; 文字コードの設定
-(set-language-environment 'Japanese)
-(set-default-coding-systems 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
