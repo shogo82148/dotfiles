@@ -70,6 +70,12 @@
 (add-hook 'c++-mode-hook
           (lambda () (c-set-style "cc-mode")))
 
+; Settings for Kuin
+; http://dl.dropbox.com/u/9975638/kuin/emacs/index.html
+(autoload 'kuin-mode "kuin-mode" nil t)
+(add-hook 'kuin-mode-hook '(lambda () (font-lock-mode 1)))
+(setq auto-mode-alist
+      (cons (cons "\\.kn$" 'kuin-mode) auto-mode-alist))
 
 ; termの設定
 (require 'term)
@@ -86,3 +92,24 @@
 "run hook as after advice"
 (run-hooks 'ansi-term-after-hook))
 (ad-activate 'ansi-term)
+
+
+(defun keep-highlight-regexp (re)
+  (interactive "sRegexp: \n")
+  (make-face 'my-highlight-face)
+  (set-face-foreground 'my-highlight-face "black")
+  (set-face-background 'my-highlight-face "yellow")
+  (defvar my-highlight-face 'my-highlight-face)
+  (setq font-lock-set-defaults nil)
+  (font-lock-set-defaults)
+  (font-lock-add-keywords 'nil (list (list re 0 my-highlight-face t)))
+  (font-lock-fontify-buffer))
+
+(defun cancel-highlight-regexp ()
+  (interactive)
+  (setq font-lock-set-defaults nil)
+  (font-lock-set-defaults)
+  (font-lock-fontify-buffer))
+
+(global-set-key "\C-f" 'keep-highlight-regexp)
+(global-set-key "\C-d" 'cancel-highlight-regexp)
