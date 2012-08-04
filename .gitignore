@@ -15,3 +15,4 @@
 
 #Git configure
 !/.git-completion.bash
+!/.git-prompt.sh

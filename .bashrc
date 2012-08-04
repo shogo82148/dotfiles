@@ -4,10 +4,17 @@
 export EDITOR=emacs
 export LC_ALL="ja_JP.UTF-8"
 export LANG="ja_JP"
+export PS1='[\u@\h \W]\\$ '
 
 # gitコマンド補完
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
+fi
+
+# gitブランチ表示
+if [ -f ~/.git-prompt.sh ]; then
+    . ~/.git-prompt.sh
+    export PS1='[\u@\h \W$(__git_ps1 "(%s)")]\\$ '
 fi
 
 # マシン固有の設定
