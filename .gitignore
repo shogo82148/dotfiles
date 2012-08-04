@@ -8,3 +8,7 @@
 #Emacs Setting files
 !/.emacs
 !/.elisp
+
+#bash configure
+!/.bash_profile
+!/.bashrc
