@@ -12,3 +12,6 @@
 #bash configure
 !/.bash_profile
 !/.bashrc
+
+#Git configure
+!/.git-completion.bash
