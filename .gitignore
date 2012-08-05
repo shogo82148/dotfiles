@@ -14,5 +14,6 @@
 !/.bashrc
 
 #Git configure
+!/.gitconfig
 !/.git-completion.bash
 !/.git-prompt.sh
