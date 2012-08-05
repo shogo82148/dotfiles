@@ -12,6 +12,7 @@
 #bash configure
 !/.bash_profile
 !/.bashrc
+!/.bash_logout
 
 #Git configure
 !/.gitconfig
