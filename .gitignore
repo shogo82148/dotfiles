@@ -8,6 +8,7 @@
 #Emacs Setting files
 !/.emacs
 !/.elisp
+/.elisp/.nosearch
 
 #bash configure
 !/.bash_profile

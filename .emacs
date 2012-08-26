@@ -4,6 +4,7 @@
        (expand-file-name "~/.elisp/")
        )
        load-path))
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;C言語のインデントを4桁に
 (setq-default c-basic-offset 4)
@@ -113,3 +114,9 @@
 
 (global-set-key "\C-f" 'keep-highlight-regexp)
 (global-set-key "\C-d" 'cancel-highlight-regexp)
+
+(autoload 'twittering-mode "twittering-mode.el"
+  "Major mode for twitter" t)
+(setq twittering-username "shogo82148")
+(setq twittering-use-master-password t)
+
