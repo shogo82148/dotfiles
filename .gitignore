@@ -4,6 +4,7 @@
 
 #managing files
 !.gitignore
+!.gitignore_global
 
 #Emacs Setting files
 !/.emacs

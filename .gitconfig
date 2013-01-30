@@ -1,3 +1,5 @@
+[core]
+        excludesfile = "~/.gitignore_global"
 [user]
 	name = Ichinose Shogo
 	email = shogo82148@gmail.com

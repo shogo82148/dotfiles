@@ -1,0 +1,11 @@
+# For Linux
+.*
+!.gitignore
+*~
+
+# For Emacs
+*~
+\#*\#
+auto-save-list
+tramp
+*_archive
