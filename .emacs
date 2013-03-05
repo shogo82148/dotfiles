@@ -18,14 +18,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 
-; Settings for Kuin
-; http://dl.dropbox.com/u/9975638/kuin/emacs/index.html
-(autoload 'kuin-mode "kuin-mode" nil t)
-(add-hook 'kuin-mode-hook '(lambda () (font-lock-mode 1)))
-(setq auto-mode-alist
-      (cons (cons "\\.kn$" 'kuin-mode) auto-mode-alist))
-
-
 (autoload 'twittering-mode "twittering-mode.el"
   "Major mode for twitter" t)
 (setq twittering-username "shogo82148")
