@@ -38,6 +38,9 @@
 
 ;;; Commentary:
 
+;; Thanks to d87 <github.com/d87> for an idea of highlighting lua
+;; builtins/numbers
+
 ;; Thanks to Vedat Hallac <github.com/vhallac> for sharing some of
 ;; his fixes and updates to core indentation logics
 
@@ -102,6 +105,76 @@
 
 (require 'comint)
 
+(eval-and-compile
+  ;; Backward compatibility for Emacsen < 24.1
+  (defalias 'lua--prog-mode
+    (if (fboundp 'prog-mode) 'prog-mode 'fundamental-mode))
+
+  (defalias 'lua--cl-assert
+    (if (fboundp 'cl-assert) 'cl-assert 'assert))
+
+  (defalias 'lua--cl-labels
+    (if (fboundp 'cl-labels) 'cl-labels 'flet))
+
+  ;; for Emacsen < 22.1
+  (defalias 'lua--with-no-warnings
+    (if (fboundp 'with-no-warnings) 'with-no-warnings 'progn))
+
+  ;; provide backward compatibility for Emacs < 23.2
+  ;; called-interactively-p receives an argument starting from Emacs 23.2
+  ;; In Emacs 22 & Emacs 23.1 it didn't expect an argument
+  ;; In Emacs 21 it was called interactively-p
+  (condition-case nil
+      (progn (called-interactively-p nil)
+             ;; if first call succeeds, make lua-called-interactively-p an alias
+             (defalias 'lua--called-interactively-p 'called-interactively-p))
+
+    (wrong-number-of-arguments
+     ;; wrong number of arguments means it's 22.1 <= Emacs < 23.2
+     ;;
+     ;; Newer and smarter Emacsen will warn about obsolete functions
+     ;; and/or wrong number of arguments. Turning these warnings off,
+     ;; since it's backward-compatibility-oriented code anyway.
+     (lua--with-no-warnings
+       (defun lua--called-interactively-p (kind)
+         "Return t if containing function was called interactively.
+
+This function provides lua-mode backward compatibility for
+pre-23.2 Emacsen."
+         (if (eq kind 'interactive)
+             (interactive-p)
+           (called-interactively-p)))))
+
+    ;; if not, it's probably < 22.1, provide partial compatibility
+    ;;
+    ;; Once again, turning obsolete-function warnings off (see above).
+    (error
+     (lua--with-no-warnings
+       (defun lua--called-interactively-p (&rest opts)
+         "Return t if containing function was called interactively.
+
+This function provides lua-mode backward compatibility for pre-22
+Emacsen."
+         (interactive-p)))))
+
+  ;; backward compatibility for Emacsen < 23.3
+  ;; Emacs 23.3 introduced with-silent-modifications macro
+  (if (fboundp 'with-silent-modifications)
+      (defalias 'lua--with-silent-modifications 'with-silent-modifications)
+
+    (defmacro lua--with-silent-modifications (&rest body)
+      "Execute BODY, pretending it does not modifies the buffer.
+
+This is a reimplementation of macro `with-silent-modifications'
+for Emacsen that doesn't contain one (pre-23.3)."
+      `(let ((old-modified-p (buffer-modified-p))
+            (inhibit-modification-hooks t)
+            (buffer-undo-list t))
+
+        (unwind-protect
+            ,@body
+          (set-buffer-modified-p old-modified-p))))))
+
 ;; Local variables
 (defgroup lua nil
   "Major mode for editing lua code."
@@ -151,8 +224,7 @@ Should be a list of strings."
   "Buffer used for communication with Lua subprocess")
 
 (defun lua--customize-set-prefix-key (prefix-key-sym prefix-key-val)
-  ;; FIXME: enable assertion, it requires 'cl and I'm not sure of its availability
-  ;; (assert (eq prefix-key-sym 'lua-prefix-key))
+  (lua--cl-assert (eq prefix-key-sym 'lua-prefix-key))
   (set prefix-key-sym (if (and prefix-key-val (> (length prefix-key-val) 0))
                           ;; read-kbd-macro returns a string or a vector
                           ;; in both cases (elt x 0) is ok
@@ -238,8 +310,10 @@ traceback location."
   :type 'boolean
   :group 'lua)
 
-(defvar lua-mode-hook nil
-  "Hooks called when Lua mode fires up.")
+(defcustom lua-mode-hook nil
+  "Hooks called when Lua mode fires up."
+  :type 'hook
+  :group 'lua)
 
 (defvar lua-region-start (make-marker)
   "Start of special region for Lua communication.")
@@ -264,9 +338,81 @@ traceback location."
     ["Search Documentation" lua-search-documentation t])
   "Emacs menu for Lua mode.")
 
+;; the whole defconst is inside eval-when-compile, because it's later referenced
+;; inside another eval-and-compile block
+(eval-and-compile
+  (defconst
+    lua--builtins
+    (let*
+        ((modules
+          '("_G" "_VERSION" "assert" "collectgarbage" "dofile" "error" "getfenv" "getmetatable"
+            "ipairs" "load" "loadfile" "loadstring" "module" "next" "pairs" "pcall" "print" 
+            "rawequal" "rawget" "rawlen" "rawset" "require" "select" "setfenv" "setmetatable"
+            "tonumber" "tostring" "type" "unpack" "xpcall"
+            ("bit32" . ("arshift" "band" "bnot" "bor" "btest" "bxor" "extract" "lrotate" "lshift"
+                        "replace" "rrotate" "rshift"))
+            ("coroutine" . ("create" "resume" "running" "status" "wrap" "yield"))
+            ("debug" . ("debug" "getfenv" "gethook" "getinfo" "getlocal" "getmetatable" 
+                        "getregistry" "getupvalue" "getuservalue" "setfenv" "sethook" "setlocal" 
+                        "setmetatable" "setupvalue" "setuservalue" "traceback" "upvalueid"
+                        "upvaluejoin"))
+            ("io" . ("close" "flush" "input" "lines" "open" "output" "popen" "read" "stderr" 
+                     "stdin" "stdout" "tmpfile" "type" "write"))
+            ("math" . ("abs" "acos" "asin" "atan" "atan2" "ceil" "cos" "cosh" "deg" "exp" "floor"
+                       "fmod" "frexp" "huge" "ldexp" "log" "log10" "max" "min" "modf" "pi" "pow"
+                       "rad" "random" "randomseed" "sin" "sinh" "sqrt" "tan" "tanh"))
+            ("os" . ("clock" "date" "difftime" "execute" "exit" "getenv" "remove" "rename"
+                     "setlocale" "time" "tmpname"))
+            ("package" . ("config" "cpath" "loaded" "loaders" "loadlib" "path" "preload"
+                          "searchers" "searchpath" "seeall"))
+            ("string" . ("byte" "char" "dump" "find" "format" "gmatch" "gsub" "len" "lower"
+                         "match" "rep" "reverse" "sub" "upper"))
+            ("table" . ("concat" "insert" "maxn" "pack" "remove" "sort" "unpack")))))
+
+      ;; This code uses \\< and \\> to delimit builtin symbols instead of
+      ;; \\_< and \\_>, because -- a necessity -- '.' syntax class is hacked
+      ;; to 'symbol' and \\_> won't detect a symbol boundary in 'foo.bar' and
+      ;; -- sufficiency -- conveniently, underscore '_' is hacked to count as
+      ;; word constituent, but only for font-locking. Neither of these hacks
+      ;; makes sense to me, I'm going to wipe them out as soon as I'm sure
+      ;; that indentation won't get hurt. --immerrr
+      ;;
+      (lua--cl-labels
+          ((module-name-re (x)
+                           (concat "\\(?1:\\<"
+                                   (if (listp x) (car x) x)
+                                   "\\>\\)"))
+           (module-members-re (x) (if (listp x)
+                                      (concat "\\(?:[ \t]*\\.[ \t]*"
+                                              "\\<\\(?2:"
+                                              (regexp-opt (cdr x))
+                                              "\\)\\>\\)?")
+                                    "")))
+
+        (concat
+         ;; common prefix - beginning-of-line or neither of [ '.', ':' ] to
+         ;; exclude "foo.string.rep"
+         "\\(?:\\`\\|[^:. \n\t]\\)"
+         ;; optional whitespace
+         "[ \n\t]*"
+         "\\(?:"
+         ;; any of modules/functions
+         (mapconcat (lambda (x) (concat (module-name-re x)
+                                        (module-members-re x)))
+                    modules
+                    "\\|")
+         "\\)"))))
+
+  "A regexp that matches lua builtin functions & variables.
+
+This is a compilation of 5.1 and 5.2 builtins taken from the
+index of respective Lua reference manuals.")
+
 (defvar lua-font-lock-keywords
   (eval-when-compile
     (list
+     ;; highlight the hash-bang line "#!/foo/bar/lua" as comment
+     '("^#!.*$" . font-lock-comment-face)
      ;; Handle variable names
      ;;  local blalba =
      ;;        ^^^^^^
@@ -277,9 +423,27 @@ traceback location."
      '("^[ \t]*\\_<\\(\\(local[ \t]+\\)?function\\)\\_>[ \t]+\\(\\(\\sw:\\|\\sw\\.\\|\\sw_\\|\\sw\\)+\\)"
        (1 font-lock-keyword-face) (3 font-lock-function-name-face nil t))
 
+     ;; Highlight lua builtin functions and variables
+     `(,lua--builtins
+           (1 font-lock-builtin-face) (2 font-lock-builtin-face nil noerror))
+
      ;; Handle function names in assignments
      '("\\(\\(\\sw:\\|\\sw\\.\\|\\sw_\\|\\sw\\)+\\)[ \t]*=[ \t]*\\(function\\)\\_>"
        (1 font-lock-function-name-face nil t) (3 font-lock-keyword-face))
+
+     ;; octal numbers
+     '("\\_<0x[[:xdigit:]]+\\_>" . font-lock-constant-face)
+
+     ;; regular numbers
+     ;;
+     ;; This regexp relies on '.' being symbol constituent. Whenever this
+     ;; changes, the regexp needs revisiting --immerrr
+     `(,(concat "\\_<\\(?1:"
+                ;; make a digit on either side of dot mandatory
+                "\\(?:[0-9]+\\.?[0-9]*\\|[0-9]*\\.?[0-9]+\\)"
+                "\\(?:[eE][+-]?[0-9]+\\)?"
+                "\\)\\_>")
+       . font-lock-constant-face)
 
      ;; Keywords.
      (concat "\\_<"
@@ -327,36 +491,8 @@ traceback location."
              (temp-directory)
            temporary-file-directory))))))
 
-;;;###autoload
-(defun lua-mode ()
-  "Major mode for editing Lua code.
-The following keys are bound:
-\\{lua-mode-map}
-"
-  (interactive)
-  (let ((switches nil)
-        s)
-    (kill-all-local-variables)
-    (setq major-mode 'lua-mode)
-    (setq mode-name "Lua")
-    (setq comint-prompt-regexp lua-prompt-regexp)
-    (make-local-variable 'lua-default-command-switches)
-    (set (make-local-variable 'beginning-of-defun-function)
-         'lua-beginning-of-proc)
-    (set (make-local-variable 'end-of-defun-function) 'lua-end-of-proc)
-    (set (make-local-variable 'indent-line-function) 'lua-indent-line)
-    (set (make-local-variable 'comment-start) lua-comment-start)
-    (set (make-local-variable 'comment-start-skip) lua-comment-start-skip)
-    (set (make-local-variable 'font-lock-defaults)
-         '(lua-font-lock-keywords
-           nil nil ((?_ . "w"))))
-    (set (make-local-variable 'imenu-generic-expression)
-         lua-imenu-generic-expression)
-    (setq local-abbrev-table lua-mode-abbrev-table)
-    (abbrev-mode 1)
-    (make-local-variable 'lua-default-eval)
-    (use-local-map lua-mode-map)
-    (set-syntax-table (copy-syntax-table))
+(defvar lua-mode-syntax-table
+  (with-syntax-table (copy-syntax-table)
     (modify-syntax-entry ?+ ".")
     (modify-syntax-entry ?- ". 12")
     (modify-syntax-entry ?* ".")
@@ -372,6 +508,31 @@ The following keys are bound:
     (modify-syntax-entry ?\n ">")
     (modify-syntax-entry ?\' "\"")
     (modify-syntax-entry ?\" "\"")
+    (syntax-table))
+  "Syntax table used while in `lua-mode'.")
+
+;;;###autoload
+(define-derived-mode lua-mode lua--prog-mode "Lua"
+  "Major mode for editing Lua code."
+  :abbrev-table lua-mode-abbrev-table
+  :syntax-table lua-mode-syntax-table
+  :group 'lua
+  (let ((switches nil)
+        s)
+    (setq comint-prompt-regexp lua-prompt-regexp)
+    (make-local-variable 'lua-default-command-switches)
+    (set (make-local-variable 'beginning-of-defun-function)
+         'lua-beginning-of-proc)
+    (set (make-local-variable 'end-of-defun-function) 'lua-end-of-proc)
+    (set (make-local-variable 'indent-line-function) 'lua-indent-line)
+    (set (make-local-variable 'comment-start) lua-comment-start)
+    (set (make-local-variable 'comment-start-skip) lua-comment-start-skip)
+    (set (make-local-variable 'font-lock-defaults)
+         '(lua-font-lock-keywords
+           nil nil ((?_ . "w"))))
+    (set (make-local-variable 'imenu-generic-expression)
+         lua-imenu-generic-expression)
+    (make-local-variable 'lua-default-eval)
     ;; setup menu bar entry (XEmacs style)
     (if (and (featurep 'menubar)
              (boundp 'current-menubar)
@@ -396,8 +557,7 @@ The following keys are bound:
 
     (set (make-local-variable 'parse-sexp-lookup-properties) t)
     (lua-mark-all-multiline-literals)
-    (lua--automark-multiline-update-timer)
-    (run-hooks 'lua-mode-hook)))
+    (lua--automark-multiline-update-timer)))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
@@ -483,10 +643,21 @@ Return the amount the indentation changed by."
   (if (and (lua-string-p) (not lua-indent-string-contents))
       ;; if inside string and strings aren't to be indented, return current indentation
       (current-indentation)
-    ;; otherwise indent by lua-indent-level relative to the line where literal starts
+    ;; Otherwise, indent as a comment
     (save-excursion
-      (goto-char (lua-get-multiline-start))
-      (+ (current-indentation) lua-indent-level))))
+      (cond
+       ;; If it is the end of a multi-line comment, simply mirror the opening
+       ;; line's indent.
+       ((looking-at "\\s *\\(?:--\\)?\\]\\(?1:=*\\)\\]")
+        (re-search-backward (format "\\[%s\\["
+                                    (or (match-string-no-properties 1) ""))
+                            (lua-get-multiline-start)
+                            'noerror)
+        (current-indentation))
+       ;; otherwise indent by lua-indent-level relative to the line where literal starts
+       (t
+        (goto-char (lua-get-multiline-start))
+        (+ (current-indentation) lua-indent-level))))))
 
 (defun lua-find-regexp (direction regexp &optional limit ignore-p)
   "Searches for a regular expression in the direction specified.
@@ -684,7 +855,8 @@ Returns final value of point as integer or nil if operation failed."
     (while t
       (unless (eql (forward-line (if back -1 1)) 0)    ;; 0 means success
         (throw 'found nil))
-      (unless (looking-at "\\s *\\(--.*\\)?$")       ;; blank lua line
+      (unless (or (looking-at "\\s *\\(--.*\\)?$")
+                  (lua-comment-or-string-p))
         (throw 'found (point))))))
 
 (eval-when-compile
@@ -847,31 +1019,30 @@ use standalone."
                       ;; end of a block matched
                       (- lua-indent-level))))))
 
-(defun lua-cleanup-indentation-info (info)
-  "Cleanup the list of indentation information.
-There are two tokens that cause list cleanup: remove-matching,
-and replace matching. These tokens are considered cleanup tokens.
+(defun  lua-add-indentation-info-pair (pair info)
+  "Add the given indentation info pair to the list of indentation information.
+This function has special case handling for two tokens: remove-matching,
+and replace-matching. These two tokens are cleanup tokens that remove or
+alter the effect of a previously recorded indentation info.
 
-When a remove-matching token is found, the next non cleanup token
-is removed from list.
+When a remove-matching token is encountered, the last recorded info, i.e.
+the car of the list is removed. This is used to roll-back an indentation of a
+block opening statement when it is closed.
 
-When a replace-matching token is found, the next non-cleanup
-token is removed from the list, and the cdr of the
-replace-matching token is inserted in its place."
-  (let (value
-        (erase-count 0))
-    (dolist (elt info value)
-      (cond
-       ( (eq 'remove-matching (car elt))
-         (setq erase-count (1+ erase-count)))
-       ( (eq 'replace-matching (car elt))
-         (setq value (cons (cdr elt) value))
-         (setq erase-count (1+ erase-count)))
-       ( t
-         (if (= erase-count 0)
-             (setq value (cons elt value))
-           (setq erase-count (1- erase-count))))))
-    (reverse value)))
+When a replace-matching token is seen, the last recorded info is removed,
+and the cdr of the replace-matching info is added in its place. This is used
+when a middle-of the block (the only case is 'else') is seen on the same line
+the block is opened."
+  (cond
+   ( (eq 'remove-matching (car pair))
+     ; Remove head of list
+     (cdr info))
+   ( (eq 'replace-matching (car pair))
+     ; remove head of list, and add the cdr of pair instead
+     (cons (cdr pair) (cdr info)))
+   ( t
+     ; Just add the pair
+     (cons pair info))))
 
 (defun lua-calculate-indentation-info (&optional parse-start parse-end)
   "For each block token on the line, computes how it affects the indentation.
@@ -899,10 +1070,11 @@ and relative each, and the shift/column to indent to."
                 (found-end (match-end 0))
                 (data (match-data)))
             (setq indentation-info
-                  (cons (lua-make-indentation-info-pair found-token found-pos) indentation-info))))
-
-        (or (and indentation-info (lua-cleanup-indentation-info indentation-info))
-            (list (cons 'absolute start-indentation)))))))
+		  (lua-add-indentation-info-pair
+		   (lua-make-indentation-info-pair found-token found-pos)
+		   indentation-info))))
+	(or indentation-info
+	    (list (cons 'absolute start-indentation)))))))
 
 (defun lua-accumulate-indentation-info (info)
   "Accumulates the indentation information previously calculated by
@@ -1090,7 +1262,7 @@ When called interactively, switch to the process buffer."
       (accept-process-output (get-buffer-process (current-buffer)))
       (goto-char (point-max))))
   ;; when called interactively, switch to process buffer
-  (if (called-interactively-p 'any)
+  (if (lua--called-interactively-p 'any)
       (switch-to-buffer lua-process-buffer)))
 
 (defun lua-kill-process ()
@@ -1182,7 +1354,7 @@ t, otherwise return nil.  BUF must exist."
       (if (not (eq major-mode 'lua-mode))
           (lua-mode))
       ;; FIXME: fix offset when executing region
-      (goto-line line)
+      (goto-char (point-min)) (forward-line (1- line))
       (message "Jumping to error in file %s on line %d" file line))))
 
 (defun lua-prompt-line ()
@@ -1322,9 +1494,17 @@ left out."
   '("Search Documentation" . lua-search-documentation))
 
 (defsubst lua-put-char-property (pos property value &optional object)
-  (if value
-      (put-text-property pos (1+ pos) property value object)
-    (remove-text-properties pos (1+ pos) (list property nil))))
+  (lua--with-silent-modifications
+
+   (if value
+       (put-text-property pos (1+ pos) property value object)
+     (remove-text-properties pos (1+ pos) (list property nil))))
+
+  ;; `lua--with-silent-modifications' inhibits modification hooks, one of which
+  ;; is the hook that keeps `syntax-ppss' internal cache up-to-date. If this
+  ;; isn't done, the results of subsequent calls to `syntax-ppss' are
+  ;; invalid. To avoid such cache discrepancy, the hook must be run manually.
+  (syntax-ppss-flush-cache pos))
 
 (defsubst lua-put-char-syntax-table (pos value &optional object)
   (lua-put-char-property pos 'syntax-table value object))
@@ -1339,10 +1519,7 @@ left out."
 
 If TYPE is string, mark char  as string delimiter. If TYPE is comment,
 mark char as comment delimiter.  Otherwise, remove the mark if any."
-  (let ((old-modified-p (buffer-modified-p)) (inhibit-modification-hooks t))
-    (unwind-protect
-        (lua-put-char-syntax-table pos (lua-get-multiline-delim-syntax type))
-      (set-buffer-modified-p old-modified-p))))
+   (lua-put-char-syntax-table pos (lua-get-multiline-delim-syntax type)))
 
 (defsubst lua-inside-multiline-p (&optional pos)
   (let ((status (syntax-ppss pos)))
@@ -1360,10 +1537,19 @@ mark char as comment delimiter.  Otherwise, remove the mark if any."
 If BEGIN is nil, start from `beginning-of-buffer'.
 If END is nil, stop at `end-of-buffer'."
   (interactive)
-  (let ((old-modified-p (buffer-modified-p)) (inhibit-modification-hooks t))
-    (unwind-protect
-        (remove-text-properties (or begin (point-min)) (or end (point-max)) '(syntax-table ()))
-      (set-buffer-modified-p old-modified-p)))
+
+  (setq begin (or begin (point-min))
+        end   (or end   (point-max)))
+
+  (lua--with-silent-modifications
+   (remove-text-properties begin end '(syntax-table ())))
+
+  ;; `lua--with-silent-modifications' inhibits modification hooks, one of which
+  ;; is the hook that keeps `syntax-ppss' internal cache up-to-date. If this
+  ;; isn't done, the results of subsequent calls to `syntax-ppss' are
+  ;; invalid. To avoid such cache discrepancy, the hook must be run manually.
+  (syntax-ppss-flush-cache begin)
+
   (font-lock-fontify-buffer))
 
 (defun lua-mark-multiline-region (begin end)
@@ -1379,7 +1565,7 @@ If BEGIN is nil, start from `beginning-of-buffer'.
 If END is nil, stop at `end-of-buffer'."
   (interactive)
 
-  (if (and (called-interactively-p 'any) (use-region-p))
+  (if (and (lua--called-interactively-p 'any) (use-region-p))
       (setq begin (region-beginning)
             end (region-end)))
 

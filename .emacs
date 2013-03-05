@@ -18,13 +18,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 
-;; Lua向け設定
-;; http://immerrr.github.com/lua-mode/ をインストール
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-
-
 ;; markdown記法向け設定
 ;; http://jblevins.org/projects/markdown-mode/ をインストール
 (autoload 'markdown-mode "markdown-mode.el"
