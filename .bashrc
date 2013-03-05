@@ -1,10 +1,13 @@
 # .bashrc
 
 # 環境変数の設定
-export EDITOR=emacs
+export EDITOR='emacsclient -nw -a ""'
 export LC_ALL="ja_JP.UTF-8"
 export LANG="ja_JP"
 export PS1='[\u@\h \W]\\$ '
+
+alias emacs='emacsclient -nw -a ""'
+alias killemacs='emacsclient -e "(kill-emacs)"'
 
 # gitコマンド補完
 if [ -f ~/.git-completion.bash ]; then
