@@ -18,12 +18,6 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 
-;Javascript向け設定
-;https://github.com/mooz/js2-mode を使用
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-
 ;;Ruby向け設定
 (autoload 'ruby-mode "ruby-mode"
   "Ruby editing mode")
