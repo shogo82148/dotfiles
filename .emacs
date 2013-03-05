@@ -35,8 +35,3 @@
   "Major mode for PHP" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
-
-;; Settings for auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
