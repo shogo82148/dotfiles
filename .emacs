@@ -17,8 +17,6 @@
        load-path))
 (add-to-list 'exec-path "/usr/local/bin")
 
-;C言語のインデントを4桁に
-(setq-default c-basic-offset 4)
 
 ;Javascript向け設定
 ;https://github.com/mooz/js2-mode を使用
@@ -52,15 +50,6 @@
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
-
-
-; インデントにタブを使用しない
-(setq-default indent-tabs-mode nil)
-
-(add-hook 'c-mode-hook
-          (lambda () (c-set-style "cc-mode")))
-(add-hook 'c++-mode-hook
-          (lambda () (c-set-style "cc-mode")))
 
 ; Settings for Kuin
 ; http://dl.dropbox.com/u/9975638/kuin/emacs/index.html
