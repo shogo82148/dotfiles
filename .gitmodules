@@ -1,0 +1,3 @@
+[submodule ".plenv"]
+	path = .plenv
+	url = git://github.com/tokuhirom/plenv.git
