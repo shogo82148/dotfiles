@@ -21,3 +21,8 @@
 !/.gitconfig
 !/.git-completion.bash
 !/.git-prompt.sh
+
+# *env
+!/.pyenv
+!/.plenv
+!/.rbenv
