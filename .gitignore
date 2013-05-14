@@ -14,7 +14,6 @@
 
 #bash configure
 !/.bash_profile
-!/.bashrc
 !/.bash_logout
 
 #Git configure
@@ -26,3 +25,6 @@
 !/.pyenv
 !/.plenv
 !/.rbenv
+
+# configure files
+!/.*rc

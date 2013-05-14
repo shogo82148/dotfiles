@@ -1,0 +1,5 @@
+defencodig utf-8
+
+hardstatus alwayslastline "%w"
+
+altscreen on
