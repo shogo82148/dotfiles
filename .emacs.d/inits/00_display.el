@@ -1,5 +1,5 @@
 
-;; タブ, 全角スペース、改行直前の半角スペースを表示する
+;; タブ, 全角スペースを表示する
 ;;(defface my-face-r-1 '((t (:background "gray15"))) nil)
 (defface my-face-b-1 '((t (:background "gray"))) nil)
 (defface my-face-b-2 '((t (:background "gray26"))) nil)
@@ -15,11 +15,13 @@
    '(("\t" 0 my-face-u-1 append)
      ("　" 0 my-face-b-1 append)
      ("[ \t]+$" 0 my-face-b-1 append)
-     ;;("[\r]*\n" 0 my-face-r-1 append)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)
 
+; 行末のスペースを表示
+(when (boundp 'show-trailing-whitespace)
+  (setq-default show-trailing-whitespace t))
 
 ; 指定した単語をハイライト表示
 ; http://d.hatena.ne.jp/kitokitoki/20100610/p2
