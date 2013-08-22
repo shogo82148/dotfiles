@@ -3,4 +3,5 @@
 
 # for emacs
 /.elisp/.nosearch
+/.emacs.d/ac-comphist.dat
 *~
