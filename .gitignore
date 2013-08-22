@@ -1,4 +1,6 @@
 
+!.*
+
 # for emacs
 /.elisp/.nosearch
 *~
