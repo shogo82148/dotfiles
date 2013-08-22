@@ -20,6 +20,7 @@
 !/.gitconfig
 !/.git-completion.bash
 !/.git-prompt.sh
+<<<<<<< HEAD
 
 # *env
 !/.pyenv
@@ -28,3 +29,5 @@
 
 # configure files
 !/.*rc
+=======
+>>>>>>> parent of 8300a0d... pyenvを導入
