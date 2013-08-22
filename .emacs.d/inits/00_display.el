@@ -45,3 +45,8 @@
 
 (global-set-key "\C-f" 'keep-highlight-regexp)
 (global-set-key "\C-d" 'cancel-highlight-regexp)
+
+
+;; バッファ名がかぶった時に親ディレクトリを表示
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
