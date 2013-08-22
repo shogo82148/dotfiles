@@ -1,33 +1,4 @@
-#Ignore all files
-/*
-/.*
 
-#managing files
-!.gitignore
-!.gitignore_global
-
-#Emacs Setting files
-!/.emacs
-!/.emacs.d
-!/.elisp
+# for emacs
 /.elisp/.nosearch
-
-#bash configure
-!/.bash_profile
-!/.bash_logout
-
-#Git configure
-!/.gitconfig
-!/.git-completion.bash
-!/.git-prompt.sh
-<<<<<<< HEAD
-
-# *env
-!/.pyenv
-!/.plenv
-!/.rbenv
-
-# configure files
-!/.*rc
-=======
->>>>>>> parent of 8300a0d... pyenvを導入
+*~
