@@ -8,7 +8,3 @@ do
     fi
 done
 
-if [ ! -d ~/.vim ]
-then
-    ln -s ~/.dotfiles/vimfiles ~/.vim
-fi
