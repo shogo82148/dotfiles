@@ -2658,7 +2658,7 @@ This fn does these things:
                           csharp-advise-revert-buffer
                           activate compile)
   (let ((is-flymake-enabled
-         (and (fboundp 'flymake-mode)
+         (and (boundp 'flymake-mode)
               flymake-mode)))
     ;; disable
     (if is-flymake-enabled
