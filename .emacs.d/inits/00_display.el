@@ -9,11 +9,12 @@
 (defvar my-face-b-2 'my-face-b-2)
 (defvar my-face-u-1 'my-face-u-1)
 
+(font-lock-add-keywords 'cperl-mode '(("\t" 0 my-face-u-1 append)))
+
 (defadvice font-lock-mode (before my-font-lock-mode ())
   (font-lock-add-keywords
    major-mode
-   '(("\t" 0 my-face-u-1 append)
-     ("　" 0 my-face-b-1 append)
+   '(("　" 0 my-face-b-1 append)
      ("[ \t]+$" 0 my-face-b-1 append)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
