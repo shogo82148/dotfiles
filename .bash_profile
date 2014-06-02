@@ -17,3 +17,5 @@ eval "$(pyenv init -)"
 if [[ -s $HOME/.nvm/nvm.sh ]] ; then
     source $HOME/.nvm/nvm.sh ;
 fi
+
+export GOPATH=$HOME/gocode
