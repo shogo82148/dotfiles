@@ -19,3 +19,4 @@ if [[ -s $HOME/.nvm/nvm.sh ]] ; then
 fi
 
 export GOPATH=$HOME/gocode
+export PATH="$GOPATH/bin:$PATH"

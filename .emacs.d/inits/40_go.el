@@ -1,5 +1,6 @@
 ;; golang 向け設定
 (require 'go-mode)
+(require 'go-autocomplete)
 (autoload 'go-mode "go-mode.el"
   "Major mode for editing golang files" t)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
