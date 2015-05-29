@@ -8,9 +8,26 @@ do
     fi
 done
 
-git clone git://github.com/tokuhirom/plenv.git ~/.plenv
-git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
-git clone git://github.com/yyuu/pyenv.git ~/.pyenv
-git clone git://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-git clone git://github.com/creationix/nvm.git ~/.nvm
+if [ ! -e ~/.plenv ]; then
+    git clone git://github.com/tokuhirom/plenv.git ~/.plenv
+fi
+
+if [ ! -e ~/.plenv/plugins/perl-build ]; then
+    git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
+fi
+
+if [ ! -e ~/.pyenv ]; then
+    git clone git://github.com/yyuu/pyenv.git ~/.pyenv
+fi
+
+if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
+    git clone git://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+fi
+
+if [ ! -e ~/.rbenv ]; then
+    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+fi
+
+if [ ! -e ~/.nvm ]; then
+    git clone git://github.com/creationix/nvm.git ~/.nvm
+fi
