@@ -1,5 +1,10 @@
 # .bash_profile
 
+if [ -x /usr/libexec/path_helper ]; then
+    PATH=""
+    eval `/usr/libexec/path_helper -s`
+fi
+
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
