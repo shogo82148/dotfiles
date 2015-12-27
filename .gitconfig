@@ -13,6 +13,9 @@
         graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 	pr-setup = config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr/*
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	branch-name = rev-parse --abbrev-ref HEAD
 	git = !git \"$@\"
 [push]
 	default = simple
+[ghq]
+	root = /Users/shogo/src
