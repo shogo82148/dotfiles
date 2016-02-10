@@ -1,6 +1,7 @@
 # For Linux
 .*
 !.gitignore
+!.travis.yml
 *~
 
 # For Emacs
