@@ -33,6 +33,13 @@ peco_history() {
 }
 bind -x '"\C-r": peco_history'
 
+function pcd {
+    local dir="$( ghq list --full-path | peco )"
+    if [ ! -z "$dir" ] ; then
+        cd "$dir"
+    fi
+}
+
 # gitコマンド補完
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
