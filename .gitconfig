@@ -19,3 +19,6 @@
 	default = simple
 [ghq]
 	root = ~/src
+[credential]
+	helper = !aws --region us-east-1 --profile CodeCommitProfile codecommit credential-helper $@
+	UseHttpPath = true
