@@ -18,7 +18,7 @@
 [push]
 	default = simple
 [ghq]
-	root = /Users/shogo/src
+	root = ~/src
 [secrets]
 	providers = git secrets --aws-provider
 	patterns = [A-Z0-9]{20}

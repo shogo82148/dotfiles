@@ -1,0 +1,2 @@
+; melpa.el
+(require 'melpa)
