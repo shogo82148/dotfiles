@@ -8,6 +8,13 @@ do
     fi
 done
 
+if [ -d "$HOME/Library/Application Support/Code" ]; then
+    if [ -L "$HOME/Library/Application Support/Code/User" ]; then
+	mv "$HOME/Library/Application Support/Code/User" "$HOME/Library/Application Support/Code/User_backup"
+    fi
+    ln -is "$PWD/vscode" "$HOME/Library/Application Support/Code/User"
+fi
+
 if [ ! -e ~/.plenv ]; then
     git clone git://github.com/tokuhirom/plenv.git ~/.plenv
 fi
