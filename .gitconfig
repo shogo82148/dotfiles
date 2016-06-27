@@ -19,6 +19,9 @@
 	default = simple
 [ghq]
 	root = ~/src
+[credential]
+	helper = !aws --region us-east-1 --profile CodeCommitProfile codecommit credential-helper $@
+	UseHttpPath = true
 [secrets]
 	providers = git secrets --aws-provider
 	patterns = [A-Z0-9]{20}
