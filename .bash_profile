@@ -23,7 +23,7 @@ if [[ -s $HOME/.nvm/nvm.sh ]] ; then
     source $HOME/.nvm/nvm.sh ;
 fi
 
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME
 export PATH="$GOPATH/bin:$PATH"
 
 peco_history() {
