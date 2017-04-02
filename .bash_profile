@@ -83,6 +83,9 @@ fi
 if [ -f ~/.cargo/env ]; then
     . ~/.cargo/env
 fi
+if [ -f ~/.bash.d/rustup.bash-completion.bash ]; then
+    . ~/.bash.d/rustup.bash-completion.bash
+fi
 
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
