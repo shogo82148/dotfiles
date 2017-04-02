@@ -11,6 +11,7 @@
 	pr-setup = config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr/*
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	branch-name = rev-parse --abbrev-ref HEAD
+	install-license = !bash -lc git-install-license
 	git = !git \"$@\"
 [push]
 	default = simple

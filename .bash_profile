@@ -41,7 +41,8 @@ function pcd {
 }
 
 function git-install-license {
-    local license="$(git rev-parse --show-toplevel)/LICENSE.md"
+    local license
+    license="$(git rev-parse --show-toplevel)/LICENSE.md"
     cat <<EOF > "$license"
 The MIT License (MIT)
 
