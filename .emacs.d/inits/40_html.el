@@ -6,6 +6,8 @@
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
 
+  (setq-default indent-tabs-mode nil) ; インデントにタブを使用しない
+
   ;; web-mode. colors.
   (set-face-attribute 'web-mode-doctype-face nil :foreground "#4A8ACA")
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "#4A8ACA")
