@@ -69,13 +69,13 @@ EOF
 }
 
 # gitコマンド補完
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
+if [ -f ~/.bash.d/git-completion.bash ]; then
+    . ~/.bash.d/git-completion.bash
 fi
 
 # gitブランチ表示
-if [ -f ~/.git-prompt.sh ]; then
-    . ~/.git-prompt.sh
+if [ -f ~/.bash.d/git-prompt.sh ]; then
+    . ~/.bash.d/git-prompt.sh
     export PS1='[\u@\h \W$(__git_ps1 "(%s)")]\\$ '
 fi
 
@@ -89,4 +89,4 @@ if [ -f ~/.bashlocal ]; then
     . ~/.bashlocal
 fi
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+test -e "${HOME}/.bash.d/iterm2_shell_integration.bash" && source "${HOME}/.bash.d/iterm2_shell_integration.bash"
