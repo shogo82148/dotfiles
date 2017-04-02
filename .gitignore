@@ -5,3 +5,5 @@
 /.elisp/.nosearch
 /.emacs.d/ac-comphist.dat
 *~
+/vscode/workspaceStorage/
+/vscode/User/workspaceStorage/

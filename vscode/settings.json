@@ -13,5 +13,7 @@
     },
 
     // Controls whether the editor should render whitespace characters
-    "editor.renderWhitespace": true
+    "editor.renderWhitespace": "all",
+    "git.confirmSync": false,
+    "window.zoomLevel": 0
 }
