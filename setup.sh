@@ -1,18 +1,32 @@
 #!/bin/sh
-cd $(dirname $0)
-for dotfile in .?*
+cd "$(dirname "$0")" || exit
+for dotfile in .*
 do
-    if [ $dotfile != '..' ] && [ $dotfile != '.git' ] && [ $dotfile != 'vimfiles' ] && [ $dotfile != '.gitmodules' ] && [ $dotfile != '.gitignore' ]
-    then
-        ln -Fis "$PWD/$dotfile" $HOME
+    # ignore special directories.
+    if [ "$dotfile" = '.' ] || [ "$dotfile" = '..' ]; then
+        continue
     fi
+
+    # ignore git configure files.
+    if [ "$dotfile" = '.git' ] || [ "$dotfile" = '.gitmodules' ] || [ "$dotfile" = '.gitignore' ]; then
+        continue
+    fi
+
+    # ignore backup files.
+    if echo "$dotfile" | grep ~\$ > /dev/null; then
+        continue
+    fi
+
+    ln -Fis "$PWD/$dotfile" "$HOME"
 done
 
 if [ -d "$HOME/Library/Application Support/Code" ]; then
-    if [ -L "$HOME/Library/Application Support/Code/User" ]; then
-	mv "$HOME/Library/Application Support/Code/User" "$HOME/Library/Application Support/Code/User_backup"
+    if [ ! -L "$HOME/Library/Application Support/Code/User" ]; then
+        if [ -d "$HOME/Library/Application Support/Code/User" ]; then
+            mv "$HOME/Library/Application Support/Code/User" "$HOME/Library/Application Support/Code/User_backup"
+        fi
+        ln -is "$PWD/vscode" "$HOME/Library/Application Support/Code/User"
     fi
-    ln -is "$PWD/vscode" "$HOME/Library/Application Support/Code/User"
 fi
 
 if [ ! -e ~/.plenv ]; then
