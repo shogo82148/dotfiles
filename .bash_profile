@@ -79,6 +79,11 @@ if [ -f ~/.git-prompt.sh ]; then
     export PS1='[\u@\h \W$(__git_ps1 "(%s)")]\\$ '
 fi
 
+# rust
+if [ -f ~/.cargo/env ]; then
+    . ~/.cargo/env
+fi
+
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
     . ~/.bashlocal
