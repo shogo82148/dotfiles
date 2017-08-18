@@ -1,33 +1,33 @@
 [core]
         excludesfile = "~/.gitignore_global"
 [color]
-	ui = auto
+        ui = auto
 [alias]
         st = status
         co = checkout
         ci = commit
         br = branch
         graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
-	pr-setup = config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr/*
+        pr-setup = config --add remote.origin.fetch +refs/pull/*/head:refs/remotes/origin/pr/*
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-	branch-name = rev-parse --abbrev-ref HEAD
-	install-license = !bash -lc git-install-license
-	git = !git \"$@\"
+        branch-name = rev-parse --abbrev-ref HEAD
+        install-license = !bash -lc git-install-license
+        git = !git \"$@\"
 [push]
-	default = simple
+        default = simple
 [ghq]
-	root = ~/src
+        root = ~/src
 [credential]
-	helper = !aws --region us-east-1 --profile CodeCommitProfile codecommit credential-helper $@
-	UseHttpPath = true
+        helper = !aws --region us-east-1 --profile CodeCommitProfile codecommit credential-helper $@
+        UseHttpPath = true
 [secrets]
-	providers = git secrets --aws-provider
-	patterns = [A-Z0-9]{20}
-	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
-	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
-	allowed = AKIAIOSFODNN7EXAMPLE
-	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+        providers = git secrets --aws-provider
+        patterns = [A-Z0-9]{20}
+        patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+        patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+        allowed = AKIAIOSFODNN7EXAMPLE
+        allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 [diff]
-	compactionHeuristic = true
+        compactionHeuristic = true
 [include]
         path = .gitconfig.local
