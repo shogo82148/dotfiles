@@ -15,5 +15,9 @@
     // Controls whether the editor should render whitespace characters
     "editor.renderWhitespace": "all",
     "git.confirmSync": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+
+    "[ruby]": {
+        "editor.tabSize": 2
+    }
 }
