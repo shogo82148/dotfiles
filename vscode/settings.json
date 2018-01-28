@@ -19,5 +19,6 @@
 
     "[ruby]": {
         "editor.tabSize": 2
-    }
+    },
+    "git.autofetch": true
 }
