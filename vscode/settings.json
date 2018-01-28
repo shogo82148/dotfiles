@@ -1,7 +1,5 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "go.formatOnSave": true,
-
     // Configure glob patterns for excluding files and folders.
     "files.exclude": {
         "**/.git": true,
