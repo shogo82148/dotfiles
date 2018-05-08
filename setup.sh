@@ -52,8 +52,3 @@ fi
 if [ ! -e ~/.nvm ]; then
     git clone git://github.com/creationix/nvm.git ~/.nvm
 fi
-
-go get golang.org/x/tools/cmd/goimports
-go get github.com/nsf/gocode
-go get github.com/peco/peco/cmd/peco
-go get github.com/motemen/ghq
