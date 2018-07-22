@@ -1,8 +1,8 @@
 # For Linux
 .*
 !.gitignore
-!.travis.yml
-!.circleci/config
+!/.travis.yml
+!/.circleci
 *~
 
 # For Emacs
