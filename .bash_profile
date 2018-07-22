@@ -36,6 +36,10 @@ if [ -f ~/.cargo/env ]; then
     . ~/.cargo/env
 fi
 
+if command -v aws_completer ; then
+    complete -C "$(command -v aws_completer)" aws
+fi
+
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
     . ~/.bashlocal
