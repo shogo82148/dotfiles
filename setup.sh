@@ -49,6 +49,11 @@ if [ ! -e ~/.rbenv ]; then
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 fi
 
+if [ ! -e ~/rbenv/plugins/ruby-build ]; then
+    mkdir -p ~/rbenv/plugins
+    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+fi
+
 if [ ! -e ~/.nvm ]; then
     git clone git://github.com/creationix/nvm.git ~/.nvm
 fi
