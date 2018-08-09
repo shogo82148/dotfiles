@@ -46,7 +46,7 @@ if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
 fi
 
 if [ ! -e ~/.rbenv ]; then
-    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 fi
 
 if [ ! -e ~/.nvm ]; then
