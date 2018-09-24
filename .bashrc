@@ -1,6 +1,7 @@
 # .bashrc
 
 # added by travis gem
+# shellcheck source=/dev/null
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 peco_history() {
@@ -49,20 +50,16 @@ EOF
     git add "$license"
 }
 
-# gitコマンド補完
-if [ -f ~/.bash.d/git-completion.bash ]; then
-    . ~/.bash.d/git-completion.bash
+if [ -d ~/.bash.d ]; then
+    for f in ~/.bash.d/*; do
+        # shellcheck source=/dev/null
+        . "$f"
+    done
 fi
 
-# gitブランチ表示
-if [ -f ~/.bash.d/git-prompt.sh ]; then
-    . ~/.bash.d/git-prompt.sh
-    export PS1='[\u@\h \W$(__git_ps1 "(%s)")]\\$ '
+if [ -d /usr/local/etc/bash_completion.d ]; then
+    for f in /usr/local/etc/bash_completion.d/*; do
+        # shellcheck source=/dev/null
+        . "$f"
+    done
 fi
-
-# rustupの補完
-if [ -f ~/.bash.d/rustup.bash-completion.bash ]; then
-    . ~/.bash.d/rustup.bash-completion.bash
-fi
-
-test -e "${HOME}/.bash.d/iterm2_shell_integration.bash" && source "${HOME}/.bash.d/iterm2_shell_integration.bash"
