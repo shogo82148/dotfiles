@@ -10,7 +10,7 @@
         delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
         branch-name = rev-parse --abbrev-ref HEAD
         install-license = !bash -lc git-install-license
-        git = !git \"$@\"
+        git = !exec git
 [push]
         default = simple
 [ghq]
