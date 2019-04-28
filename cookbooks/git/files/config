@@ -27,13 +27,16 @@
         allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 [diff]
         compactionHeuristic = true
+
 [include]
-        path = .gitconfig.local
+        path = local
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
 [user]
 	name = Ichinose Shogo
 	email = shogo82148@gmail.com
