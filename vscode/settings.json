@@ -15,8 +15,6 @@
     "git.confirmSync": false,
     "window.zoomLevel": 0,
 
-    "go.useLanguageServer": true,
-
     "[ruby]": {
         "editor.tabSize": 2
     },

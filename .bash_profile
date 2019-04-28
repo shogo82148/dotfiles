@@ -8,7 +8,7 @@ fi
 # 環境変数の設定
 export LC_ALL="ja_JP.UTF-8"
 export LANG="ja_JP"
-export PS1='[\u@\h \W]\\$ '
+export PS1='[\u@\H \W]\\$ '
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
@@ -46,3 +46,5 @@ if [ -f ~/.bashlocal ]; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export PATH="$HOME/.cargo/bin:$PATH"

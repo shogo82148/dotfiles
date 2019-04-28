@@ -63,3 +63,8 @@ if [ -d /usr/local/etc/bash_completion.d ]; then
         . "$f"
     done
 fi
+
+export PS1='[\W$(__git_ps1 "(%s)")]\\$ '
+
+# added by travis gem
+[ -f /Users/shogoichinose/.travis/travis.sh ] && source /Users/shogoichinose/.travis/travis.sh
