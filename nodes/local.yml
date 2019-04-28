@@ -1,4 +1,5 @@
 recipes:
-  - cookbooks/git/default.rb
   - cookbooks/homebrew/default.rb
+  - cookbooks/git/default.rb
+  - cookbooks/go/default.rb
 
