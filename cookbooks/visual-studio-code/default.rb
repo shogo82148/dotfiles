@@ -1,6 +1,8 @@
 darwin_app "visual-studio-code"
 remote_file "/usr/local/bin/code"
 
+``
+
 %w(
   bungcip.better-toml
   coolbear.systemd-unit-file
@@ -32,4 +34,12 @@ remote_file "/usr/local/bin/code"
     command ["code", "--install-extension", ext]
     not_if "code --list-extensions | grep -F #{ext}"
   end
+end
+
+remote_file "#{ENV['HOME']}/Library/Application Support/Code/User/locale.json" do
+  source "files/config/locale.json"
+end
+
+remote_file "#{ENV['HOME']}/Library/Application Support/Code/User/settings.json" do
+  source "files/config/settings.json"
 end

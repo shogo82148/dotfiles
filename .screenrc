@@ -1,7 +1,0 @@
-defencodig utf-8
-
-hardstatus alwayslastline " %-w%{b bw}%n %t%{-}%+w %= %02c "
-altscreen on
-vbell off
-startup_message off
-autodetach on
