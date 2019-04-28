@@ -2,4 +2,5 @@ recipes:
   - cookbooks/homebrew/default.rb
   - cookbooks/git/default.rb
   - cookbooks/go/default.rb
+  - cookbooks/visual-studio-code/default.rb
 
