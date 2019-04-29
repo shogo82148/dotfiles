@@ -4,3 +4,4 @@ recipes:
   - cookbooks/go/default.rb
   - cookbooks/visual-studio-code/default.rb
   - cookbooks/bash/default.rb
+  - cookbooks/plenv/default.rb

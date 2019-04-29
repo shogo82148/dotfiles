@@ -21,6 +21,11 @@ export GO111MODULE=on
 
 export PATH="$GOPATH/bin:$PATH"
 
+if [[ -d "$HOME/.plenv" ]]; then
+    export PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
+
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
     # shellcheck source=/dev/null
