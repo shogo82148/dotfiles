@@ -1,0 +1,48 @@
+// Place your settings in this file to overwrite the default settings
+{
+    // Configure glob patterns for excluding files and folders.
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+
+        // ignore emacs special files
+        "*~": true,
+        "#*#": true
+    },
+
+    // Controls whether the editor should render whitespace characters
+    "editor.renderWhitespace": "all",
+    "git.confirmSync": false,
+    "window.zoomLevel": -1,
+
+    // go settings
+    "go.useLanguageServer": true,
+    "go.alternateTools": {
+        "go-langserver": "gopls"
+    },
+    "go.languageServerExperimentalFeatures": {
+        "format": true,
+        "autoComplete": true
+    },
+    "go.languageServerFlags": [
+        "-logfile",
+        "/Users/shogoichinose/go-language-server.log"
+    ],
+    "go.testEnvFile": "",
+    "go.testFlags": [
+        "-v",
+        "-race"
+    ],
+
+    // spell check
+    "cSpell.ignoreRegExpList": ["[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"],
+    "cSpell.userWords": [
+        "Ichinose", "Shogo",
+        "fuga", "hoge"
+    ],
+
+    "[ruby]": {
+        "editor.tabSize": 2
+    },
+    "git.autofetch": true
+}

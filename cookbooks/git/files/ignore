@@ -1,0 +1,19 @@
+# For Linux
+.*
+!.gitignore
+!/.travis.yml
+!/.circleci
+!.htaccess
+*~
+
+# For Emacs
+*~
+\#*\#
+auto-save-list
+tramp
+*_archive
+
+*.bak.meta
+
+# perl
+cpanfile.snapshot
