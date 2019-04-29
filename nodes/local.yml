@@ -7,3 +7,4 @@ recipes:
   - cookbooks/plenv/default.rb
   - cookbooks/rbenv/default.rb
   - cookbooks/pyenv/default.rb
+  - cookbooks/gpg/default.rb
