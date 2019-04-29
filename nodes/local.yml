@@ -6,3 +6,4 @@ recipes:
   - cookbooks/bash/default.rb
   - cookbooks/plenv/default.rb
   - cookbooks/rbenv/default.rb
+  - cookbooks/pyenv/default.rb

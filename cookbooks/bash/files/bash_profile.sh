@@ -31,6 +31,11 @@ if [[ -d "$HOME/.rbenv" ]]; then
     eval "$(rbenv init -)"
 fi
 
+if command -v pyenv; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
     # shellcheck source=/dev/null
