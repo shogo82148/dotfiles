@@ -3,4 +3,4 @@ recipes:
   - cookbooks/git/default.rb
   - cookbooks/go/default.rb
   - cookbooks/visual-studio-code/default.rb
-
+  - cookbooks/bash/default.rb
