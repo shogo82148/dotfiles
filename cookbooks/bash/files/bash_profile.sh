@@ -26,6 +26,11 @@ if [[ -d "$HOME/.plenv" ]]; then
     eval "$(plenv init -)"
 fi
 
+if [[ -d "$HOME/.rbenv" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
     # shellcheck source=/dev/null
