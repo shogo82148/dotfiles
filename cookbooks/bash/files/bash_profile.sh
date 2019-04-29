@@ -2,7 +2,7 @@
 # .bash_profile
 
 if [ -x /usr/libexec/path_helper ]; then
-    eval `/usr/libexec/path_helper -s`
+    eval "$(/usr/libexec/path_helper -s)"
 fi
 
 # 環境変数の設定
@@ -12,17 +12,17 @@ export PS1='[\u@\H \W]\\$ '
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
+    # shellcheck source=/dev/null
     . ~/.bashrc
 fi
 
 export GOPATH=$HOME
-export PATH="$GOPATH/bin:$PATH"
+export GO111MODULE=on
 
-if command -v aws_completer ; then
-    complete -C "$(command -v aws_completer)" aws
-fi
+export PATH="$GOPATH/bin:$PATH"
 
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
+    # shellcheck source=/dev/null
     . ~/.bashlocal
 fi

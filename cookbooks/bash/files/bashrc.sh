@@ -67,7 +67,6 @@ if [ -d /usr/local/etc/bash_completion.d ]; then
 fi
 
 export PS1='[\W$(__git_ps1 "(%s)")]\\$ '
-export GO111MODULE=on
 
 # added by travis gem
 [ -f /Users/shogoichinose/.travis/travis.sh ] && source /Users/shogoichinose/.travis/travis.sh
