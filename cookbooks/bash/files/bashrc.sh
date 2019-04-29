@@ -6,7 +6,8 @@
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 peco_history() {
-    declare l=$(HISTTIMEFORMAT=  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
+    l=$(HISTTIMEFORMAT=''  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
+    declare l
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
@@ -17,7 +18,7 @@ fi
 function pcd {
     local dir
     dir="$( ghq list --full-path | peco )"
-    if [ ! -z "$dir" ] ; then
+    if [ -n "$dir" ] ; then
         cd "$dir" || exit
     fi
 }
