@@ -7,7 +7,7 @@
 
 peco_history() {
     l=$(HISTTIMEFORMAT=''  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
-    declare l
+    declare l="$l"
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
