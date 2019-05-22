@@ -8,3 +8,4 @@ recipes:
   - cookbooks/rbenv/default.rb
   - cookbooks/pyenv/default.rb
   - cookbooks/gpg/default.rb
+  - cookbooks/ghostscript/default.rb
