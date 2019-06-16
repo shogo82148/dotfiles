@@ -70,3 +70,7 @@ export PS1='[\W$(__git_ps1 "(%s)")]\\$ '
 
 # added by travis gem
 [ -f /Users/shogoichinose/.travis/travis.sh ] && source /Users/shogoichinose/.travis/travis.sh
+
+if command -v direnv; then
+    eval "$(direnv hook bash)"
+fi
