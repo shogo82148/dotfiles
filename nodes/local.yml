@@ -10,4 +10,4 @@ recipes:
   - cookbooks/gpg/default.rb
   - cookbooks/ghostscript/default.rb
   - cookbooks/imagemagick/default.rb
-  
+  - cookbooks/direnv/default.rb
