@@ -1,4 +1,4 @@
-package "go"
+package "git"
 
 # configure dotfiles
 directory "#{ENV['HOME']}/.config"
