@@ -18,7 +18,6 @@ remote_file "/usr/local/bin/code"
   ms-vscode.Go
   ms-vsliveshare.vsliveshare
   octref.vetur
-  PeterJausovec.vscode-docker
   rebornix.ruby
   redhat.java
   streetsidesoftware.code-spell-checker
