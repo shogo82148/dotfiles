@@ -11,3 +11,4 @@ recipes:
   - cookbooks/ghostscript/default.rb
   - cookbooks/imagemagick/default.rb
   - cookbooks/direnv/default.rb
+  - cookbooks/cmake/default.rb
