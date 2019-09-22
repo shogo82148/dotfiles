@@ -74,3 +74,5 @@ export PS1='[\W$(__git_ps1 "(%s)")]\\$ '
 if command -v direnv; then
     eval "$(direnv hook bash)"
 fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

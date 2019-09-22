@@ -20,10 +20,6 @@
     "go.alternateTools": {
         "go-langserver": "gopls"
     },
-    "go.languageServerExperimentalFeatures": {
-        "format": true,
-        "autoComplete": true
-    },
     "go.languageServerFlags": [
         "-logfile",
         "/Users/shogoichinose/go-language-server.log"
@@ -37,12 +33,37 @@
     // spell check
     "cSpell.ignoreRegExpList": ["[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"],
     "cSpell.userWords": [
-        "Ichinose", "Shogo",
+        // Perl terms
+        "CPAN",
+        "Minilla",
+        "Mojolicious",
+        "cpanm",
+        "installdeps",
+        "minil",
+        "notest",
+
+        // linux
+        "xenial",
+        "trusty",
+        "autofetch",
+
+        // person names
+        "Ichinose",
+        "Shogo",
+        "shogo82148",
+        "kamipo",
+
+        // others
         "fuga", "hoge"
     ],
 
     "[ruby]": {
         "editor.tabSize": 2
     },
-    "git.autofetch": true
+    "git.autofetch": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "terraform.languageServer": {
+        "enabled": true
+    }
 }
