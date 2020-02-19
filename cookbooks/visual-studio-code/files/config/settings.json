@@ -7,7 +7,13 @@
 
         // ignore emacs special files
         "*~": true,
-        "#*#": true
+        "#*#": true,
+
+        // ignore java special files
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     },
 
     // Controls whether the editor should render whitespace characters
