@@ -84,5 +84,6 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terraform.languageServer": {
         "enabled": true
-    }
+    },
+    "files.insertFinalNewline": true
 }
