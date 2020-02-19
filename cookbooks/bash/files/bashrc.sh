@@ -23,6 +23,18 @@ function pcd {
     fi
 }
 
+function paws {
+    AWS_PROFILE=$(perl -nle 'print $1 if /^[[](?:profile\s+)?([^]]+)/' ~/.aws/config | peco)
+    export AWS_PROFILE
+    echo "AWS_PROFILE is now $AWS_PROFILE"
+}
+
+function penv {
+    APP_ENV=$( (echo develop; echo staging; echo production) | peco)
+    export APP_ENV
+    echo "APP_ENV is now $APP_ENV"
+}
+
 if [ -d ~/.bash.d ]; then
     for f in ~/.bash.d/*; do
         # shellcheck source=/dev/null
