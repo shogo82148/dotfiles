@@ -48,16 +48,29 @@
         "minil",
         "notest",
 
+        // aws services
+        "codedeploy",
+        "cloudformation",
+        "X-Amzn-Trace-Id",
+        "cognito",
+
+        // software names
+        "reviewdog",
+        "shellcheck",
+        "golangci",
+
         // linux
         "xenial",
         "trusty",
         "autofetch",
+        "SRPMS",
 
         // person names
         "Ichinose",
         "Shogo",
         "shogo82148",
         "kamipo",
+        "chooblarin",
 
         // others
         "fuga", "hoge"
