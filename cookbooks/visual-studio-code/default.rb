@@ -1,8 +1,6 @@
 darwin_app "visual-studio-code"
 remote_file "/usr/local/bin/code"
 
-``
-
 %w(
   bungcip.better-toml
   coolbear.systemd-unit-file
