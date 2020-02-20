@@ -30,7 +30,7 @@ function paws {
 }
 
 function penv {
-    APP_ENV=$( (echo develop; echo staging; echo production) | peco)
+    APP_ENV=$( (echo development; echo staging; echo production) | peco)
     export APP_ENV
     echo "APP_ENV is now $APP_ENV"
 }
