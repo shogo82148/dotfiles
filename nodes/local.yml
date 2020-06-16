@@ -12,3 +12,4 @@ recipes:
   - cookbooks/imagemagick/default.rb
   - cookbooks/direnv/default.rb
   - cookbooks/cmake/default.rb
+  - cookbooks/zsh/default.rb
