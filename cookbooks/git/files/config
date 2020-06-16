@@ -13,6 +13,8 @@
         git = !exec git
 [push]
         default = simple
+[pull]
+        ff = only
 [ghq]
         root = ~/src
 [credential]
