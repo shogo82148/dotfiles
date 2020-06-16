@@ -1,1 +1,1 @@
-package "go"
+# package "go"
