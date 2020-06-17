@@ -22,14 +22,6 @@
     "window.zoomLevel": -1,
 
     // go settings
-    "go.useLanguageServer": true,
-    "go.alternateTools": {
-        "go-langserver": "gopls"
-    },
-    "go.languageServerFlags": [
-        "-logfile",
-        "/Users/shogoichinose/go-language-server.log"
-    ],
     "go.testEnvFile": "",
     "go.testFlags": [
         "-v",
