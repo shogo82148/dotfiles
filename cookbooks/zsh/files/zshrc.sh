@@ -2,7 +2,7 @@
 # .zshrc
 
 if command -v direnv; then
-    eval "$(direnv hook bash)"
+    eval "$(direnv hook zsh)"
 fi
 
 # from https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
