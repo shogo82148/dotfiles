@@ -40,6 +40,11 @@ if command -v pyenv; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+if [[ -d "$HOME/.phpenv" ]]; then
+    export PATH="$HOME/.phpenv/bin:$PATH"
+    eval "$(phpenv init -)"
+fi
+
 # マシン固有の設定
 if [ -f ~/.zshlocal ]; then
     # shellcheck source=/dev/null
