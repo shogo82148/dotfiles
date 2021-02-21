@@ -11,6 +11,14 @@
         branch-name = rev-parse --abbrev-ref HEAD
         install-license = !bash -lc git-install-license
         git = !exec git
+
+        # aliases for https://golang.org/doc/contribute#git-codereview_install
+        change = codereview change
+        gofmt = codereview gofmt
+        mail = codereview mail
+        pending = codereview pending
+        submit = codereview submit
+        sync = codereview sync
 [push]
         default = simple
 [pull]
@@ -43,6 +51,9 @@
 	clean = git-lfs clean -- %f
 
 [user]
-	name = Ichinose Shogo
-	email = shogo82148@gmail.com
+        name = Ichinose Shogo
+        email = shogo82148@gmail.com
         signingkey = E6BE27F39196B3F3
+
+[http]
+   cookiefile = /Users/shogoichinose/.gitcookies
