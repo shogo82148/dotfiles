@@ -24,3 +24,4 @@ cpanfile.snapshot
 !/.github
 !/.firebaserc
 !.prettierrc.json
+!/.goreleaser.yml
