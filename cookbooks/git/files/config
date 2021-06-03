@@ -56,4 +56,7 @@
         signingkey = E6BE27F39196B3F3
 
 [http]
-   cookiefile = /Users/shogoichinose/.gitcookies
+        cookiefile = /Users/shogoichinose/.gitcookies
+
+[init]
+        defaultBranch = main
