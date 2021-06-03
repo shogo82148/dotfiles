@@ -31,41 +31,33 @@
     // spell check
     "cSpell.ignoreRegExpList": ["[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"],
     "cSpell.userWords": [
-        // Perl terms
         "CPAN",
+        "Ichinose",
         "Minilla",
         "Mojolicious",
+        "SRPMS",
+        "Shogo",
+        "X-Amzn-Trace-Id",
+        "akiaiosfodnn",
+        "autofetch",
+        "chooblarin",
+        "cloudformation",
+        "codedeploy",
+        "cognito",
         "cpanm",
+        "example",
+        "fuga",
+        "golangci",
+        "hoge",
         "installdeps",
+        "kamipo",
         "minil",
         "notest",
-
-        // aws services
-        "codedeploy",
-        "cloudformation",
-        "X-Amzn-Trace-Id",
-        "cognito",
-
-        // software names
         "reviewdog",
         "shellcheck",
-        "golangci",
-
-        // linux
-        "xenial",
-        "trusty",
-        "autofetch",
-        "SRPMS",
-
-        // person names
-        "Ichinose",
-        "Shogo",
         "shogo82148",
-        "kamipo",
-        "chooblarin",
-
-        // others
-        "fuga", "hoge"
+        "trusty",
+        "xenial"
     ],
 
     "[ruby]": {
@@ -108,9 +100,13 @@
         "!Split sequence"
     ],
     "yaml.validate": false,
-    "workbench.editorAssociations": [],
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
     "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWxcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltdLFwiZm9ybWF0V2lkdGhcIjpcIjI0MFwiLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODUwLFwiaGVpZ2h0XCI6MTEwMH0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
-    "editor.formatOnSave": true,
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -120,5 +116,17 @@
     "go.formatTool": "goimports",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "editor.formatOnSave": false,
+    "go.toolsManagement.autoUpdate": true,
+    "files.associations": {
+        "*.ts": "typescript"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "redhat.telemetry.enabled": true
 }
