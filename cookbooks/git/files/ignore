@@ -1,11 +1,5 @@
 # For Linux
 .*
-!.gitignore
-!/.travis.yml
-!/.circleci
-!.htaccess
-!/.github
-*~
 
 # For Emacs
 *~
@@ -21,3 +15,12 @@ cpanfile.snapshot
 
 # for VSCode
 *.code-workspace
+
+# config files to commit
+!.gitignore
+!/.travis.yml
+!/.circleci
+!.htaccess
+!/.github
+!/.firebaserc
+!.prettierrc.json
