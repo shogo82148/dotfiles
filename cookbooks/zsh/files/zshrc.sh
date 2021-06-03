@@ -9,6 +9,26 @@ if command -v nodenv; then
     eval "$(nodenv init -)"
 fi
 
+if [[ -d "$HOME/.plenv" ]]; then
+    export PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
+
+if [[ -d "$HOME/.rbenv" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+if command -v pyenv; then
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+if [[ -d "$HOME/.phpenv" ]]; then
+    export PATH="$HOME/.phpenv/bin:$PATH"
+    eval "$(phpenv init -)"
+fi
+
 # from https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
 function peco-history-selection() {
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`

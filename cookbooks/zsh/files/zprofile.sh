@@ -24,23 +24,3 @@ fi
 export GOPATH=$HOME
 export GO111MODULE=on
 export PATH="$GOPATH/bin:$PATH"
-
-if [[ -d "$HOME/.plenv" ]]; then
-    export PATH="$HOME/.plenv/bin:$PATH"
-    eval "$(plenv init -)"
-fi
-
-if [[ -d "$HOME/.rbenv" ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
-
-if command -v pyenv; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-if [[ -d "$HOME/.phpenv" ]]; then
-    export PATH="$HOME/.phpenv/bin:$PATH"
-    eval "$(phpenv init -)"
-fi
