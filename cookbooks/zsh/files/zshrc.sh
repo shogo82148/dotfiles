@@ -5,6 +5,10 @@ if command -v direnv; then
     eval "$(direnv hook zsh)"
 fi
 
+if command -v nodenv; then
+    eval "$(nodenv init -)"
+fi
+
 # from https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
 function peco-history-selection() {
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
