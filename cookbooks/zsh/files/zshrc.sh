@@ -1,11 +1,11 @@
 #!/bin/zsh
 # .zshrc
 
-if command -v direnv; then
+if command -v direnv > /dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-if command -v nodenv; then
+if command -v nodenv > /dev/null 2>&1; then
     eval "$(nodenv init -)"
 fi
 
@@ -19,7 +19,7 @@ if [[ -d "$HOME/.rbenv" ]]; then
     eval "$(rbenv init -)"
 fi
 
-if command -v pyenv; then
+if command -v pyenv > /dev/null 2>&1; then
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 fi
