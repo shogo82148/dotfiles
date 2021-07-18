@@ -19,7 +19,6 @@
     // Controls whether the editor should render whitespace characters
     "editor.renderWhitespace": "all",
     "git.confirmSync": false,
-    "window.zoomLevel": -1,
 
     // go settings
     "go.testEnvFile": "",
@@ -100,12 +99,9 @@
         "!Split sequence"
     ],
     "yaml.validate": false,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWxcIixcImN1c3RvbUxpYnJhcmllc1wiOltcIkwuc2NyYXRjaHBhZFwiXSxcInBsdWdpbnNcIjpbXSxcInJlY2VudENvbG9yc1wiOltdLFwiZm9ybWF0V2lkdGhcIjpcIjI0MFwiLFwiY3JlYXRlVGFyZ2V0XCI6ZmFsc2UsXCJwYWdlRm9ybWF0XCI6e1wieFwiOjAsXCJ5XCI6MCxcIndpZHRoXCI6ODUwLFwiaGVpZ2h0XCI6MTEwMH0sXCJzZWFyY2hcIjp0cnVlLFwic2hvd1N0YXJ0U2NyZWVuXCI6dHJ1ZSxcImdyaWRDb2xvclwiOlwiI2QwZDBkMFwiLFwiZGFya0dyaWRDb2xvclwiOlwiIzZlNmU2ZVwiLFwiYXV0b3NhdmVcIjp0cnVlLFwicmVzaXplSW1hZ2VzXCI6bnVsbCxcIm9wZW5Db3VudGVyXCI6MCxcInZlcnNpb25cIjoxOCxcInVuaXRcIjoxLFwiaXNSdWxlck9uXCI6ZmFsc2UsXCJ1aVwiOlwiXCJ9In0=",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -128,5 +124,23 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "redhat.telemetry.enabled": true
+    "redhat.telemetry.enabled": true,
+    "window.zoomLevel": -1,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": false,
+        "yaml": false,
+        "plaintext": false,
+        "markdown": false
+    },
+    "githubIssues.ignoreCompletionTrigger": [
+        "python",
+        "makefile",
+        "perl"
+    ],
+    "githubIssues.ignoreUserCompletionTrigger": [
+        "python",
+        "perl"
+    ],
+    "githubPullRequests.terminalLinksHandler": "github"
 }
