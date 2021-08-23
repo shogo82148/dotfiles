@@ -10,4 +10,5 @@ recipes:
   - cookbooks/awscli/default.rb
   - cookbooks/peco/default.rb
   - cookbooks/ghq/default.rb
+  - cookbooks/cfn-lint/default.rb
   - cookbooks/docker-desktop/default.rb
