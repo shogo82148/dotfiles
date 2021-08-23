@@ -9,3 +9,4 @@ recipes:
   - cookbooks/gpg/default.rb
   - cookbooks/awscli/default.rb
   - cookbooks/peco/default.rb
+  - cookbooks/ghq/default.rb
