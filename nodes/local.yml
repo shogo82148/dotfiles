@@ -6,3 +6,4 @@ recipes:
   - cookbooks/direnv/default.rb
   - cookbooks/cmake/default.rb
   - cookbooks/zsh/default.rb
+  - cookbooks/gpg/default.rb
