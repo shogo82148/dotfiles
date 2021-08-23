@@ -6,7 +6,7 @@ recipes:
   - cookbooks/direnv/default.rb
   - cookbooks/cmake/default.rb
   - cookbooks/zsh/default.rb
-  - cookbooks/gpg/default.rb
+  - cookbooks/gnupg/default.rb
   - cookbooks/awscli/default.rb
   - cookbooks/peco/default.rb
   - cookbooks/ghq/default.rb
