@@ -10,4 +10,4 @@ recipes:
   - cookbooks/awscli/default.rb
   - cookbooks/peco/default.rb
   - cookbooks/ghq/default.rb
-  - cookbooks/docker/default.rb
+  - cookbooks/docker-desktop/default.rb
