@@ -7,3 +7,4 @@ recipes:
   - cookbooks/cmake/default.rb
   - cookbooks/zsh/default.rb
   - cookbooks/gpg/default.rb
+  - cookbooks/awscli/default.rb
