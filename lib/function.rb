@@ -1,7 +1,7 @@
 define :darwin_app, source: nil do
   source = params[:source] || params[:name]
-  execute "brew cask install #{source} --appdir=\"/Applications\"" do
-    not_if "brew cask list | grep -q #{source}"
+  execute "brew install #{source} --appdir=\"/Applications\" --cask" do
+    not_if "brew list --cask | grep -q #{source}"
   end
 end
 
