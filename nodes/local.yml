@@ -8,3 +8,4 @@ recipes:
   - cookbooks/zsh/default.rb
   - cookbooks/gpg/default.rb
   - cookbooks/awscli/default.rb
+  - cookbooks/peco/default.rb
