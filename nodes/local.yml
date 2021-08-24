@@ -13,3 +13,4 @@ recipes:
   - cookbooks/ghq/default.rb
   - cookbooks/cfn-lint/default.rb
   - cookbooks/docker-desktop/default.rb
+  - cookbooks/aws-sso-external/default.rb

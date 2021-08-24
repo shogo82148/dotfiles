@@ -2,6 +2,8 @@
 
 include_recipe "lib/function.rb"
 
+node["arch"] = run_command('uname -m').stdout.chomp
+
 node["recipes"] = node["recipes"] || []
 
 node["recipes"].each do |recipe|
