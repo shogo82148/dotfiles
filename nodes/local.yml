@@ -18,4 +18,5 @@ recipes:
   - cookbooks/pyenv/default.rb
   - cookbooks/rbenv/default.rb
   - cookbooks/nodenv/default.rb
-  - cookbooks/jp/default.rb
+  - cookbooks/jq/default.rb
+  - cookbooks/aws-sam-cli/default.rb
