@@ -14,3 +14,6 @@ recipes:
   - cookbooks/cfn-lint/default.rb
   - cookbooks/docker-desktop/default.rb
   - cookbooks/aws-sso-external/default.rb
+  - cookbooks/plenv/default.rb
+  - cookbooks/pyenv/default.rb
+  - cookbooks/rbenv/default.rb
