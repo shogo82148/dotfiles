@@ -21,3 +21,4 @@ recipes:
   - cookbooks/jq/default.rb
   - cookbooks/aws-sam-cli/default.rb
   - cookbooks/finicky/default.rb
+  - cookbooks/gh/default.rb
