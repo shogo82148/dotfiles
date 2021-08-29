@@ -20,3 +20,4 @@ recipes:
   - cookbooks/nodenv/default.rb
   - cookbooks/jq/default.rb
   - cookbooks/aws-sam-cli/default.rb
+  - cookbooks/finicky/default.rb
