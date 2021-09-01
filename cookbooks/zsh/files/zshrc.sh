@@ -40,9 +40,9 @@ zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
 function pcd () {
-    local selected_dir=$(ghq list -p | peco)
+    local selected_dir=$(ghq list | peco)
     if [ -n "$selected_dir" ]; then
-    cd "$selected_dir"
+    cd "$(ghq root)/$selected_dir"
     fi
 }
 
