@@ -23,6 +23,8 @@
         default = simple
 [pull]
         ff = only
+[tag]
+        sort=v:refname
 [ghq]
         root = ~/src
 [credential]
