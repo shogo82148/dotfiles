@@ -9,23 +9,16 @@ if command -v nodenv > /dev/null 2>&1; then
     eval "$(nodenv init -)"
 fi
 
-if [[ -d "$HOME/.plenv" ]]; then
-    export PATH="$HOME/.plenv/bin:$PATH"
-    eval "$(plenv init -)"
+if command -v plenv > /dev/null 2>&1; then
+    eval "$(nodenv init -)"
 fi
 
-if [[ -d "$HOME/.rbenv" ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
+if command -v rbenv > /dev/null 2>&1; then
+    eval "$(nodenv init -)"
 fi
 
 if command -v pyenv > /dev/null 2>&1; then
     eval "$(pyenv init --path)"
-fi
-
-if [[ -d "$HOME/.phpenv" ]]; then
-    export PATH="$HOME/.phpenv/bin:$PATH"
-    eval "$(phpenv init -)"
 fi
 
 # from https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
