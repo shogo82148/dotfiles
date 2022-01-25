@@ -6,6 +6,7 @@ execute 'Install Homebrew' do
     not_if 'test $(which /usr/local/bin/brew)'
   when 'arm64'
     not_if 'test $(which /opt/homebrew/bin/brew)'
+    ENV['PATH'] = "/opt/homebrew/bin:#{ENV['PATH']}"
   else
     raise ArgumentError, "unknown arch: #{node[:arch]}"
   end
