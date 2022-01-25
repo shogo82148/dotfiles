@@ -4,7 +4,7 @@
 homebrew_bin = ''
 case node[:arch]
 when 'x86_64'
-  homebrew_bin = '/usr/local/bin/brew'
+  homebrew_bin = '/usr/local/bin'
 when 'arm64'
   homebrew_bin = '/opt/homebrew/bin'
 else
