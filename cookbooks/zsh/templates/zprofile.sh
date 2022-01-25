@@ -23,4 +23,4 @@ fi
 # Go の環境変数設定
 export GOPATH=$HOME
 export GO111MODULE=on
-export PATH="$GOPATH/bin:$PATH"
+export PATH="$GOPATH/bin:$HOME/bin:<%= @homebrew_bin %>:$PATH"

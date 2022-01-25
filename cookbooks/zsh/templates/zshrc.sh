@@ -64,9 +64,9 @@ function penv {
 }
 
 autoload bashcompinit && bashcompinit
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '<%= @homebrew_bin %>/aws_completer' aws
 
 # マシン固有の設定
-if [ -f "$HOME/.zshrc_local" ]; then
-    . "$HOME/.zshrc_local"
+if [ -f "$HOME/.zshrc.local" ]; then
+    . "$HOME/.zshrc.local"
 fi
