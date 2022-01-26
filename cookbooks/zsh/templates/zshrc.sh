@@ -10,11 +10,11 @@ if command -v nodenv > /dev/null 2>&1; then
 fi
 
 if command -v plenv > /dev/null 2>&1; then
-    eval "$(nodenv init -)"
+    eval "$(plenv init -)"
 fi
 
 if command -v rbenv > /dev/null 2>&1; then
-    eval "$(nodenv init -)"
+    eval "$(rbenv init -)"
 fi
 
 if command -v pyenv > /dev/null 2>&1; then
