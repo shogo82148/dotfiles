@@ -33,8 +33,10 @@ fi
 
 if command -v pyenv; then
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 fi
+
+alias python=python3
+alias pip=pip3
 
 # マシン固有の設定
 if [ -f ~/.bashlocal ]; then
