@@ -21,18 +21,26 @@ export GO111MODULE=on
 
 export PATH="$GOPATH/bin:$PATH"
 
-if [[ -d "$HOME/.plenv" ]]; then
-    export PATH="$HOME/.plenv/bin:$PATH"
+if command -v direnv > /dev/null 2>&1; then
+    eval "$(direnv hook bash)"
+fi
+
+if command -v nodenv > /dev/null 2>&1; then
+    eval "$(nodenv init -)"
+fi
+
+if command -v plenv > /dev/null 2>&1; then
     eval "$(plenv init -)"
 fi
 
-if [[ -d "$HOME/.rbenv" ]]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
+if command -v rbenv > /dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
-if command -v pyenv; then
+if command -v pyenv > /dev/null 2>&1; then
     eval "$(pyenv init -)"
+    PATH=$(pyenv root)/shims:$PATH
+    export PATH
 fi
 
 alias python=python3
