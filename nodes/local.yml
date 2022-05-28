@@ -8,7 +8,7 @@ recipes:
   - cookbooks/zsh/default.rb
   - cookbooks/gpg-suite/default.rb
   - cookbooks/awscli/default.rb
-  - cookbooks/session-manager-plugin/default.rb
+  # - cookbooks/session-manager-plugin/default.rb # TODO: remove sudo
   - cookbooks/peco/default.rb
   - cookbooks/ghq/default.rb
   - cookbooks/cfn-lint/default.rb
