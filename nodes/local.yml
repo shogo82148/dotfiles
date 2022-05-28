@@ -22,3 +22,4 @@ recipes:
   - cookbooks/aws-sam-cli/default.rb
   - cookbooks/finicky/default.rb
   - cookbooks/gh/default.rb
+  - cookbooks/visual-studio-code/default.rb
