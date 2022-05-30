@@ -25,3 +25,4 @@ recipes:
   - cookbooks/visual-studio-code/default.rb
   - cookbooks/parallel/default.rb
   - cookbooks/coreutils/default.rb
+  - cookbooks/shellcheck/default.rb
