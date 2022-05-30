@@ -24,3 +24,4 @@ recipes:
   - cookbooks/gh/default.rb
   - cookbooks/visual-studio-code/default.rb
   - cookbooks/parallel/default.rb
+  - cookbooks/coreutils/default.rb
