@@ -27,3 +27,4 @@ recipes:
   - cookbooks/coreutils/default.rb
   - cookbooks/shellcheck/default.rb
   - cookbooks/ag/default.rb
+  - cookbooks/gimp/default.rb
