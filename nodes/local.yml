@@ -28,3 +28,4 @@ recipes:
   - cookbooks/shellcheck/default.rb
   - cookbooks/the_silver_searcher/default.rb
   - cookbooks/gimp/default.rb
+  - cookbooks/inkscape/default.rb
