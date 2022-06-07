@@ -26,5 +26,5 @@ recipes:
   - cookbooks/parallel/default.rb
   - cookbooks/coreutils/default.rb
   - cookbooks/shellcheck/default.rb
-  - cookbooks/ag/default.rb
+  - cookbooks/the_silver_searcher/default.rb
   - cookbooks/gimp/default.rb
