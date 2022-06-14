@@ -21,6 +21,11 @@ if command -v pyenv > /dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
 
+if [ -d "$HOME/.phpenv" ]; then
+    export PATH=$HOME/.phpenv/bin:$PATH
+    eval "$(phpenv init -)"
+fi
+
 # from https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
 function peco-history-selection() {
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
