@@ -55,7 +55,7 @@
 [user]
         name = Ichinose Shogo
         email = shogo82148@gmail.com
-        signingkey = E6BE27F39196B3F3
+        signingkey = E6BE27F39196B3F3!
 
 [http]
         cookiefile = /Users/shogoichinose/.gitcookies
