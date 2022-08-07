@@ -32,7 +32,7 @@ esac
 MITAMAE="mitamae-${mitamae_arch}-${mitamae_os}"
 
 # install mitamae
-VERSION=1.12.8
+VERSION=1.13.1
 cd "$TMPDIR"
 curl -sSL "https://github.com/itamae-kitchen/mitamae/releases/download/v$VERSION/$MITAMAE.tar.gz" -o mitamae.tar.gz
 tar xzvf mitamae.tar.gz
