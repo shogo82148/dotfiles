@@ -1,6 +1,7 @@
 recipes:
   - cookbooks/homebrew/default.rb
   - cookbooks/git/default.rb
+  - cookbooks/git-secrets/default.rb
   - cookbooks/go/default.rb
   - cookbooks/bash/default.rb
   - cookbooks/direnv/default.rb
