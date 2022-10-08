@@ -54,7 +54,7 @@
 	clean = git-lfs clean -- %f
 
 [user]
-        name = Ichinose Shogo
+        name = ICHINOSE Shogo
         email = shogo82148@gmail.com
         signingkey = E6BE27F39196B3F3!
 
