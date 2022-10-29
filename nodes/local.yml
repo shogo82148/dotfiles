@@ -10,6 +10,7 @@ recipes:
   - cookbooks/gpg-suite/default.rb
   - cookbooks/awscli/default.rb
   - cookbooks/graphviz/default.rb
+  - cookbooks/goreleaser/default.rb
   # - cookbooks/session-manager-plugin/default.rb # TODO: remove sudo
   - cookbooks/peco/default.rb
   - cookbooks/ghq/default.rb
