@@ -32,3 +32,4 @@ recipes:
   - cookbooks/the_silver_searcher/default.rb
   - cookbooks/gimp/default.rb
   - cookbooks/inkscape/default.rb
+  - cookbooks/ecspresso/default.rb
