@@ -24,4 +24,11 @@ cpanfile.snapshot
 !/.github
 !/.firebaserc
 !.prettierrc.json
+
+# https://goreleaser.com/
 !/.goreleaser.yml
+
+# https://github.com/aws-cloudformation/cfn-lint
+!.cfnlintrc
+!.cfnlintrc.yaml
+!.cfnlintrc.yml
