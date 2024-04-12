@@ -64,6 +64,20 @@ function penv {
 autoload bashcompinit && bashcompinit
 complete -C '<%= @homebrew_bin %>/aws_completer' aws
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/shogoichinose/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/shogoichinose/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/shogoichinose/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/shogoichinose/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/Users/shogoichinose/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
 # マシン固有の設定
 if [ -f "$HOME/.zshrc.local" ]; then
     . "$HOME/.zshrc.local"
