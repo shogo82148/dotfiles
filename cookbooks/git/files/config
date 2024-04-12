@@ -64,3 +64,6 @@
 [init]
         defaultBranch = main
         # templatedir=~/.config/git/template
+
+[rerere]
+        enabled = true
