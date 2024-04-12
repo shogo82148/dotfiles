@@ -22,7 +22,6 @@ recipes:
   - cookbooks/rbenv/default.rb
   - cookbooks/nodenv/default.rb
   - cookbooks/jq/default.rb
-  - cookbooks/aws-sam-cli/default.rb
   - cookbooks/finicky/default.rb
   - cookbooks/gh/default.rb
   - cookbooks/visual-studio-code/default.rb
