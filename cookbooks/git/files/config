@@ -67,3 +67,7 @@
 
 [rerere]
         enabled = true
+
+[hook "gitleaks"]
+        event = pre-commit
+        command = gitleaks git --staged --redact
