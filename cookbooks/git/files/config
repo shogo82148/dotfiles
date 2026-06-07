@@ -70,4 +70,4 @@
 
 [hook "gitleaks"]
         event = pre-commit
-        command = gitleaks git --staged --redact
+        command = gitleaks git --staged --verbose
