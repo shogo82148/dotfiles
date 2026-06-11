@@ -68,6 +68,6 @@
 [rerere]
         enabled = true
 
-[hook "gitleaks"]
+[hook "betterleaks"]
         event = pre-commit
-        command = gitleaks git --staged --verbose
+        command = betterleaks git --staged --verbose
