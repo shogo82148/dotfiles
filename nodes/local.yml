@@ -32,4 +32,4 @@ recipes:
   - cookbooks/gimp/default.rb
   - cookbooks/inkscape/default.rb
   - cookbooks/ecspresso/default.rb
-  - cookbooks/gitleaks/default.rb
+  - cookbooks/betterleaks/default.rb
