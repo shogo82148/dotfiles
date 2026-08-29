@@ -62,7 +62,7 @@ function penv {
 }
 
 autoload bashcompinit && bashcompinit
-complete -C '<%= @homebrew_bin %>/aws_completer' aws
+complete -C '/usr/local/bin/aws_completer' aws
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/shogoichinose/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/shogoichinose/google-cloud-sdk/path.zsh.inc'; fi
