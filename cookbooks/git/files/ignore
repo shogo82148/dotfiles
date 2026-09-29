@@ -32,3 +32,6 @@ cpanfile.snapshot
 !.cfnlintrc
 !.cfnlintrc.yaml
 !.cfnlintrc.yml
+
+# https://github.com/betterleaks/betterleaks
+!.betterleaks.toml
